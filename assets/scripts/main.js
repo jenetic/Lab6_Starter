@@ -7,6 +7,7 @@ window.addEventListener('DOMContentLoaded', init);
 function init() {
   // Get the recipes from localStorage
   let recipes = getRecipesFromStorage();
+  console.log(recipes);
   // Add each recipe to the <main> element
   addRecipesToDocument(recipes);
   // Add the event listeners to the form elements
@@ -24,6 +25,13 @@ function getRecipesFromStorage() {
   // A9. TODO - Complete the functionality as described in this function
   //           header. It is possible in only a single line, but should
   //           be no more than a few lines.
+  if (localStorage.getItem('recipes') !== null) {
+    const recipeString = localStorage.getItem('recipes');
+    const recipeJSON = JSON.parse(recipeString);
+    return recipeJSON;
+  } else {
+    return [];
+  }
 }
 
 /**
@@ -35,10 +43,27 @@ function getRecipesFromStorage() {
  */
 function addRecipesToDocument(recipes) {
   // A10. TODO - Get a reference to the <main> element
+  const mainElement = document.querySelector("main");
+
   // A11. TODO - Loop through each of the recipes in the passed in array,
   //            create a <recipe-card> element for each one, and populate
   //            each <recipe-card> with that recipe data using element.data = ...
   //            Append each element to <main>
+  recipes.forEach(recipe => {
+    let recipeElement = document.createElement("recipe-card");
+    recipeElement.data = {
+      "imgSrc": recipe.imgSrc,
+      "imgAlt": recipe.imgAlt,
+      "titleLnk": recipe.titleLnk,
+      "titleTxt": recipe.titleTxt,
+      "organization": recipe.organization,
+      "rating": recipe.rating,
+      "numRatings": recipe.numRatings,
+      "lengthTime": recipe.lengthTime,
+      "ingredients": recipe.ingredients,
+    }
+    mainElement.append(recipeElement); 
+  })
 }
 
 /**
