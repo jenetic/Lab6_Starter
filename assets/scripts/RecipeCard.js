@@ -12,9 +12,6 @@ class RecipeCard extends HTMLElement {
 
     // A2. TODO - Create an <article> element - This will hold our markup once our data is set
     let articleElement = document.createElement('article');
-    // const imag = document.createElement("p");
-    // imag.innerHTML = "hi";
-    // articleElement.append(imag);
 
     // A3. TODO - Create a style element - This will hold all of the styles for the Web Component
     let styleElement = document.createElement("style");
@@ -123,7 +120,6 @@ class RecipeCard extends HTMLElement {
    *                        }
    */
   set data(data) {
-    console.log("hi");
     // If nothing was passed in, return
     if (!data) return;
 
